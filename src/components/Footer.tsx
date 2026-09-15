@@ -8,7 +8,7 @@ export function Footer() {
   return (
     <footer className="foot">
       <Social />
-      <nav className="foot-links" aria-label="Legal">
+      <nav className="foot-links" aria-label="Підвал">
         <a href="#top">{t.footerHome}</a>
         <a href="#contact">{t.nav.contact}</a>
         <a href="#booking">{t.nav.book}</a>

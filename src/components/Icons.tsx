@@ -20,12 +20,12 @@ export function IconTwitter() {
   )
 }
 
-export function IconFacebook() {
+export function IconTelegram() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path
         fill="currentColor"
-        d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h2.6l.4-3H13v-2c0-.6.4-1 1-1z"
+        d="M20.7 4.3 3.9 10.8c-1.1.4-1.1 1 .2 1.3l4.3 1.3 1.6 5.1c.2.6.3.8.8.8.4 0 .6-.2.8-.4l2.3-2.2 4.5 3.3c.8.5 1.4.2 1.6-.8l2.9-13.7c.3-1.2-.4-1.7-1.2-1.4zM9.2 13.6l8.7-5.5c.4-.3.8 0 .5.3l-7.5 6.8-.3 3.1z"
       />
     </svg>
   )

@@ -1,10 +1,6 @@
-# unsleptov restaurant (eatbu-style demo)
+# Family's Star. Park Hotel
 
-Portfolio demo: **UNSLEPTOV RESTAURANT & BAR** — dark single-page layout (menu, hours, gallery, booking, contact). All venue details are **fictional**.
-
-Built on the [unsleptov restaurant template](https://github.com/ThoriumSteinar/unsleptov-restaurant) stack (React + Vite).
-
-## Locally
+Сайт парк-готелю **Family's Star** на березі Дніпра біля Верхньодніпровська.
 
 ```bash
 npm install
@@ -16,5 +12,3 @@ npm run dev
 ```bash
 GITHUB_PAGES=true npm run build
 ```
-
-Base path defaults to `/unsleptov-restaurant-bar/` when `GITHUB_PAGES=true`.

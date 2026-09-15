@@ -1,16 +1,8 @@
 import { useMemo, useState, type FormEvent } from 'react'
-import { locales, site } from '../data'
+import { locale, site } from '../data'
 import { useI18n } from '../i18n'
-import {
-  addMinutes,
-  defaultSlot,
-  isClosed,
-  nextOpenDay,
-  sameDay,
-  slotsFor,
-  startOfDay,
-} from '../lib/hours'
-import { IconArrow, IconCal, IconClock, IconGuest } from './Icons'
+import { sameDay, startOfDay } from '../lib/hours'
+import { IconArrow, IconCal, IconGuest } from './Icons'
 
 function monthMatrix(year: number, month: number): (Date | null)[][] {
   const first = new Date(year, month, 1)
@@ -25,18 +17,14 @@ function monthMatrix(year: number, month: number): (Date | null)[][] {
 }
 
 export function BookingCard() {
-  const { lang, t } = useI18n()
+  const { t } = useI18n()
   const b = t.booking
-  const locale = locales[lang]
   const today = startOfDay(new Date())
   const [step, setStep] = useState<'book' | 'details' | 'done'>('book')
-  const [date, setDate] = useState(() => nextOpenDay())
-  const [cursor, setCursor] = useState(() => {
-    const d = nextOpenDay()
-    return { y: d.getFullYear(), m: d.getMonth() }
-  })
+  const [date, setDate] = useState(() => today)
+  const [cursor, setCursor] = useState(() => ({ y: today.getFullYear(), m: today.getMonth() }))
   const [party, setParty] = useState(2)
-  const [time, setTime] = useState(() => defaultSlot(nextOpenDay()))
+  const [nights, setNights] = useState(2)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
@@ -45,9 +33,6 @@ export function BookingCard() {
   const fmtLong = (d: Date) =>
     d.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })
 
-  const slots = useMemo(() => slotsFor(date), [date])
-  const closed = isClosed(date)
-  const returnBy = slots.length ? addMinutes(time, 105) : '—'
   const grid = useMemo(() => monthMatrix(cursor.y, cursor.m), [cursor])
   const monthLabel = new Date(cursor.y, cursor.m, 1).toLocaleDateString(locale, {
     month: 'long',
@@ -55,14 +40,8 @@ export function BookingCard() {
   })
 
   function pickDate(d: Date) {
-    if (d < today || isClosed(d)) return
+    if (d < today) return
     setDate(d)
-    setTime(defaultSlot(d))
-  }
-
-  function onNext() {
-    if (closed || !slots.includes(time)) return
-    setStep('details')
   }
 
   function onSubmit(e: FormEvent) {
@@ -81,8 +60,8 @@ export function BookingCard() {
             party,
             guests: t.guests(party),
             date: fmtLong(date),
-            time,
-            email: email || site.email,
+            nights: b.nightsCount(nights),
+            phone: site.phoneHotel,
           })}
         </p>
         <button
@@ -115,9 +94,7 @@ export function BookingCard() {
           <span>
             <IconGuest /> {party}
           </span>
-          <span>
-            <IconClock /> {time}
-          </span>
+          <span>{b.nightsCount(nights)}</span>
         </p>
         <label className="book-field">
           <span>{b.fullName}</span>
@@ -157,16 +134,14 @@ export function BookingCard() {
         <span>
           <IconGuest /> {party}
         </span>
-        <span>
-          <IconClock /> {time}
-        </span>
+        <span>{b.nightsCount(nights)}</span>
       </p>
 
       <label className="book-field">
-        <span>{b.partySize}</span>
+        <span>{b.guestsLabel}</span>
         <span className="book-select">
           <select value={party} onChange={(e) => setParty(Number(e.target.value))}>
-            {Array.from({ length: 12 }, (_, i) => i + 1).map((n) => (
+            {Array.from({ length: 8 }, (_, i) => i + 1).map((n) => (
               <option key={n} value={n}>
                 {n}
               </option>
@@ -175,12 +150,19 @@ export function BookingCard() {
           <IconGuest />
         </span>
       </label>
-      {party >= 9 ? (
-        <p className="book-hint">
-          {b.partyLarge}{' '}
-          <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a>.
-        </p>
-      ) : null}
+
+      <label className="book-field">
+        <span>{b.nights}</span>
+        <span className="book-select">
+          <select value={nights} onChange={(e) => setNights(Number(e.target.value))}>
+            {Array.from({ length: 14 }, (_, i) => i + 1).map((n) => (
+              <option key={n} value={n}>
+                {b.nightsCount(n)}
+              </option>
+            ))}
+          </select>
+        </span>
+      </label>
 
       <div className="cal">
         <div className="cal-head">
@@ -213,14 +195,13 @@ export function BookingCard() {
           {grid.flat().map((cell, i) => {
             if (!cell) return <span key={`e-${i}`} />
             const past = cell < today
-            const shut = isClosed(cell)
             const selected = sameDay(cell, date)
             return (
               <button
                 key={cell.toISOString()}
                 type="button"
-                disabled={past || shut}
-                className={selected ? 'is-selected' : shut ? 'is-shut' : ''}
+                disabled={past}
+                className={selected ? 'is-selected' : ''}
                 onClick={() => pickDate(cell)}
               >
                 {cell.getDate()}
@@ -230,31 +211,9 @@ export function BookingCard() {
         </div>
       </div>
 
-      <label className="book-field">
-        <span>{b.time}</span>
-        <span className="book-select">
-          <select
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-            disabled={!slots.length}
-          >
-            {slots.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
-          <IconClock />
-        </span>
-      </label>
+      <p className="book-return">{b.checkIn}</p>
 
-      {closed ? (
-        <p className="book-hint">{t.closedDay}</p>
-      ) : (
-        <p className="book-return">{b.returnBy(returnBy)}</p>
-      )}
-
-      <button className="book-next" type="button" onClick={onNext} disabled={closed || !slots.length}>
+      <button className="book-next" type="button" onClick={() => setStep('details')}>
         {b.next} <IconArrow />
       </button>
     </div>
