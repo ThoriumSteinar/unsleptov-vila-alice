@@ -1,14 +1,8 @@
-# Family's Star. Park Hotel
+# unsleptov
 
-Сайт парк-готелю **Family's Star** на березі Дніпра біля Верхньодніпровська.
+Учебный макет кофейни в Киеве. Название, адрес, телефон и почта вымышлены.
 
 ```bash
 npm install
 npm run dev
-```
-
-## Deploy (GitHub Pages)
-
-```bash
-GITHUB_PAGES=true npm run build
 ```

@@ -8,30 +8,27 @@ export function Header() {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    function onScroll() {
-      setOpen(false)
+    function onKey(event: KeyboardEvent) {
+      if (event.key === 'Escape') setOpen(false)
     }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
   }, [])
 
   const links = [
-    { href: '#rooms', label: t.nav.rooms },
-    { href: '#park', label: t.nav.park },
-    { href: '#restaurant', label: t.nav.restaurant },
-    { href: '#rest', label: t.nav.rest },
-    { href: '#events', label: t.nav.events },
-    { href: '#contact', label: t.nav.contact },
+    { href: '#place', label: t.nav.place },
+    { href: '#drinks', label: t.nav.drinks },
+    { href: '#menu', label: t.nav.menu },
+    { href: '#visit', label: t.nav.visit },
   ]
 
   return (
     <header className={open ? 'top is-open' : 'top'}>
       <a className="brand" href="#top" aria-label={site.name}>
-        <span className="brand-mark">FS</span>
-        <span className="brand-name">{site.short}</span>
+        {site.name}
       </a>
 
-      <nav className="nav" aria-label="Основна навігація">
+      <nav className="nav" aria-label="Разделы">
         {links.map((item) => (
           <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
             {item.label}
@@ -40,8 +37,8 @@ export function Header() {
       </nav>
 
       <div className="top-end">
-        <a className="btn-book" href="#booking">
-          {t.nav.book}
+        <a className="btn-route" href="#visit" onClick={() => setOpen(false)}>
+          {t.nav.route}
         </a>
         <Social />
         <button
@@ -49,7 +46,7 @@ export function Header() {
           className="burger"
           aria-expanded={open}
           aria-label="Меню"
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => setOpen((value) => !value)}
         >
           <span />
           <span />

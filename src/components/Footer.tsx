@@ -7,15 +7,21 @@ export function Footer() {
 
   return (
     <footer className="foot">
-      <Social />
-      <nav className="foot-links" aria-label="Підвал">
-        <a href="#top">{t.footerHome}</a>
-        <a href="#contact">{t.nav.contact}</a>
-        <a href="#booking">{t.nav.book}</a>
-      </nav>
-      <p className="foot-copy">
-        © {new Date().getFullYear()} {site.name}. {t.footerCredit}.
-      </p>
+      <div className="foot-inner">
+        <a className="foot-brand" href="#top">
+          {site.name}
+        </a>
+        <Social />
+        <p>
+          {site.address.join(', ')}
+          <br />
+          <a href={`tel:${site.phoneTel}`}>{site.phone}</a>
+          {' · '}
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+        <p className="foot-note">{t.footerNote}</p>
+        <p className="foot-copy">© {new Date().getFullYear()} {site.name}</p>
+      </div>
     </footer>
   )
 }

@@ -1,226 +1,141 @@
 const asset = (file: string) => `${import.meta.env.BASE_URL}images/${file}`
-const video = (file: string) => `${import.meta.env.BASE_URL}video/${file}`
 
 export const site = {
-  name: "Family's Star. Park Hotel",
-  short: "Family's Star",
-  phoneHotel: '067 405 45 45',
-  phoneRestaurant: '097 202 45 45',
-  phone: '067 405 45 45',
-  email: 'galina.taraban@gmail.com',
-  website: 'https://familys.com.ua',
-  address: ['вул. Гайдамацька, 28А', 'смт Новомиколаївка', 'Верхньодніпровськ, 51600'],
-  plusCode: 'J9G9+Q5',
-  lat: 48.6393973,
-  lng: 34.3679922,
+  name: 'unsleptov',
+  city: 'Киев',
+  phone: '044 555 2048',
+  phoneTel: '+380445552048',
+  email: 'hello@unsleptov.com',
+  address: ['ул. Тарифная, 18', 'Подол, Киев'],
+  lat: 50.4672,
+  lng: 30.5168,
   social: {
-    instagram: 'https://www.instagram.com/familystar.vdn/',
-    telegram: 'https://t.me/familysstar_bot',
+    instagram: 'https://www.instagram.com/unsleptov',
   },
 }
 
 export const images = {
-  hero: asset('hero.jpg'),
-  roomBed: asset('room-bed.jpg'),
-  roomLiving: asset('room-living.png'),
-  roomBath: asset('room-bath.png'),
-  parkPool: asset('park-pool.jpg'),
-  parkGarden: asset('park-garden.jpg'),
-  parkPoolSide: asset('park-pool-side.jpg'),
-  parkCastle: asset('park-castle.jpg'),
-  restBench: asset('rest-bench.jpg'),
-  foodPlate: asset('food-plate.jpg'),
-  eventsTower: asset('events-tower.jpg'),
-  eventsShots: asset('events-shots.jpg'),
-  arrivalGates: asset('arrival-gates.jpg'),
-  arrivalDrive: asset('arrival-drive.jpg'),
-  sunset: video('sunset-pool.mp4'),
+  hall: asset('cafe-hall.png'),
+  friends: asset('cafe-friends.png'),
+  laptop: asset('cafe-laptop.jpg'),
+  door: asset('cafe-door.jpg'),
+  tray: asset('cafe-tray.jpg'),
+  cups: asset('cafe-cups.png'),
 }
 
-export const mapEmbed = `https://www.openstreetmap.org/export/embed.html?bbox=${site.lng - 0.04}%2C${site.lat - 0.025}%2C${site.lng + 0.04}%2C${site.lat + 0.025}&layer=mapnik&marker=${site.lat}%2C${site.lng}`
-
-export const mapLink = `https://www.google.com/maps/search/?api=1&query=${site.lat},${site.lng}`
-
-export const locale = 'uk-UA'
-
-export const amenities = [
-  { id: 'pool', icon: '◇' },
-  { id: 'park', icon: '❀' },
-  { id: 'lake', icon: '≈' },
-  { id: 'restaurant', icon: '◉' },
-  { id: 'events', icon: '✦' },
-  { id: 'family', icon: '○' },
-  { id: 'parking', icon: 'P' },
-  { id: 'wifi', icon: '📶' },
+export const schedule = [
+  { label: 'Пн–Чт', days: [1, 2, 3, 4], open: '08:00', close: '21:00' },
+  { label: 'Пт–Сб', days: [5, 6], open: '08:00', close: '22:00' },
+  { label: 'Вс', days: [0], open: '09:00', close: '21:00' },
 ] as const
 
-type BookingCopy = {
-  checkIn: string
-  nights: string
-  guestsLabel: string
-  next: string
-  back: string
-  confirm: string
-  fullName: string
-  email: string
-  phone: string
-  notes: string
-  held: string
-  seeYou: string
-  bookAnother: string
-  nightsCount: (n: number) => string
-  guestFallback: string
-  weekdays: string[]
-  prevMonth: string
-  nextMonth: string
-  done: (p: {
-    name: string
-    guests: string
-    party: number
-    date: string
-    nights: string
-    phone: string
-  }) => string
-}
+export const signatures = [
+  {
+    name: 'Капучино',
+    note: 'Плотная пенка, к долгому разговору.',
+    price: '80',
+  },
+  {
+    name: 'Фильтр дня',
+    note: 'Светлый, пока на стойке это зерно.',
+    price: '75',
+  },
+  {
+    name: 'Какао с карамелью',
+    note: 'Холодный, со сливками.',
+    price: '95',
+  },
+  {
+    name: 'Круассан',
+    note: 'С маслом, с утра у витрины.',
+    price: '65',
+  },
+] as const
 
-export type Copy = {
-  pageTitle: string
-  skip: string
-  tagline: string
-  heroNote: string
+export const menu = [
+  {
+    id: 'coffee',
+    title: 'Кофе',
+    items: [
+      { name: 'Эспрессо', note: 'Короткий', price: '55' },
+      { name: 'Американо', note: 'Длинный', price: '65' },
+      { name: 'Капучино', note: 'Молоко и пенка', price: '80' },
+      { name: 'Флэт уайт', note: 'Плотнее капучино', price: '85' },
+      { name: 'Фильтр дня', note: 'Зерно этой недели', price: '75' },
+      { name: 'Раф', note: 'Сливки и ваниль', price: '90' },
+    ],
+  },
+  {
+    id: 'other',
+    title: 'Не кофе',
+    items: [
+      { name: 'Какао с карамелью', note: 'Холодный, со сливками', price: '95' },
+      { name: 'Какао', note: 'Горячий', price: '70' },
+      { name: 'Чай', note: 'Чёрный или травяной', price: '60' },
+      { name: 'Лимонад', note: 'Домашний', price: '70' },
+    ],
+  },
+  {
+    id: 'food',
+    title: 'К столу',
+    items: [
+      { name: 'Круассан', note: 'С маслом', price: '65' },
+      { name: 'Миндальный круассан', note: 'С витрины', price: '85' },
+      { name: 'Песочное печенье', note: 'К фильтру', price: '40' },
+    ],
+  },
+] as const
+
+export const visitNotes = [
+  'Столы на двоих и на компанию',
+  'С ноутбуком можно, розетка у окна',
+  'Wi‑Fi спрашивают у стойки',
+  'Выпечка с открытия',
+  'Бронь не нужна',
+] as const
+
+const pad = 0.012
+export const mapEmbed = `https://www.openstreetmap.org/export/embed.html?bbox=${site.lng - pad}%2C${site.lat - pad}%2C${site.lng + pad}%2C${site.lat + pad}&layer=mapnik&marker=${site.lat}%2C${site.lng}`
+
+export const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('ул. Тарифная 18, Киев')}`
+
+export const copy = {
+  pageTitle: 'unsleptov — кофейня в Киеве',
+  skip: 'К содержанию',
+  kicker: 'Кофейня в Киеве',
+  lead: 'Зайти с друзьями, взять кофе и посидеть.',
+  aside: 'Стол у окна остаётся для тех, кто открыл ноутбук.',
+  cta: 'Как добраться',
   nav: {
-    rooms: string
-    park: string
-    restaurant: string
-    rest: string
-    events: string
-    contact: string
-    book: string
-  }
-  roomsTitle: string
-  roomsLead: string
-  roomsName: string
-  roomsBody: string
-  roomCaptions: { bed: string; living: string; bath: string }
-  parkTitle: string
-  parkLead: string
-  restaurantTitle: string
-  restaurantLead: string
-  restaurantHours: string
-  restTitle: string
-  restLead: string
-  amenityLabels: Record<(typeof amenities)[number]['id'], string>
-  eventsTitle: string
-  eventsLead: string
-  contactTitle: string
-  contactFind: string
-  contactWrite: string
-  contactCall: string
-  contactHotel: string
-  contactRestaurant: string
-  contactMap: string
-  formTitle: string
-  formName: string
-  formEmail: string
-  formPhone: string
-  formSubject: string
-  formMessage: string
-  formSend: string
-  formSent: string
-  bookingTitle: string
-  bookingPhoneNote: string
-  booking: BookingCopy
-  footerHome: string
-  footerCredit: string
-  guests: (n: number) => string
-}
-
-const booking: BookingCopy = {
-  checkIn: 'Заїзд',
-  nights: 'Ночей',
-  guestsLabel: 'Гостей',
-  next: 'Далі',
-  back: '← Назад',
-  confirm: 'Надіслати заявку',
-  fullName: "Ім'я",
-  email: 'Email',
-  phone: 'Телефон',
-  notes: 'Побажання',
-  held: 'Заявку прийнято',
-  seeYou: 'Чекаємо вас на Дніпрі',
-  bookAnother: 'Нова заявка',
-  nightsCount: (n) => (n === 1 ? '1 ніч' : n < 5 ? `${n} ночі` : `${n} ночей`),
-  guestFallback: 'Гість',
-  weekdays: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд'],
-  prevMonth: 'Попередній місяць',
-  nextMonth: 'Наступний місяць',
-  done: ({ name, party, guests, date, nights, phone }) =>
-    `${name}, ${party} ${guests}, заїзд ${date}, ${nights}. Підтвердимо за телефоном ${phone}.`,
-}
-
-export const copy: Copy = {
-  pageTitle: "Family's Star. Park Hotel",
-  skip: 'Перейти до змісту',
-  tagline: 'Парк-готель на березі Дніпра',
-  heroNote: '60 км від Дніпра · 3 км від Верхньодніпровська',
-  nav: {
-    rooms: 'Номери',
-    park: 'Територія',
-    restaurant: 'Ресторан',
-    rest: 'Відпочинок',
-    events: 'Свята',
-    contact: 'Контакти',
-    book: 'Бронь',
+    place: 'Зал',
+    drinks: 'Напитки',
+    menu: 'Меню',
+    visit: 'Найти',
+    route: 'Маршрут',
   },
-  roomsTitle: 'Номери',
-  roomsLead: 'Сімейний двокімнатний номер',
-  roomsName: 'Спальня, вітальня з балконом і власна ванна. Сніданок можна узгодити при бронюванні.',
-  roomsBody: 'Вид у сад і до води. Два, троє чи четверо гостей — напишіть, підберемо розміщення.',
-  roomCaptions: { bed: 'Спальня', living: 'Вітальня з балконом', bath: 'Ванна кімната' },
-  parkTitle: 'Територія',
-  parkLead: 'Парк, басейн і захід сонця над водосховищем.',
-  restaurantTitle: 'Ресторан',
-  restaurantLead: 'Кухня в залі та банкети на терасі біля води.',
-  restaurantHours: 'Ресторан: 10:00 – 21:30',
-  restTitle: 'Відпочинок',
-  restLead: 'Лавка до озера, сад і тиша за містом.',
-  amenityLabels: {
-    pool: 'Басейн',
-    park: 'Парк',
-    lake: 'Вид на Дніпро',
-    restaurant: 'Ресторан',
-    events: 'Свята',
-    family: 'Для сімей',
-    parking: 'Паркінг',
-    wifi: 'Wi-Fi',
-  },
-  eventsTitle: 'Свята',
-  eventsLead: 'Весілля, дні народження, корпоративи на терасі з видом на воду.',
-  contactTitle: 'Як нас знайти',
-  contactFind: 'Адреса',
-  contactWrite: 'Написати',
-  contactCall: 'Зателефонувати',
-  contactHotel: 'Готель',
-  contactRestaurant: 'Ресторан',
-  contactMap: 'Відкрити в Google Maps',
-  formTitle: 'Напишіть нам',
-  formName: "Ім'я",
-  formEmail: 'Email',
-  formPhone: 'Телефон',
-  formSubject: 'Тема',
-  formMessage: 'Повідомлення',
-  formSend: 'Надіслати',
-  formSent: 'Повідомлення надіслано. Ми зателефонуємо.',
-  bookingTitle: 'Забронювати номер',
-  bookingPhoneNote: 'Або одразу зателефонуйте — так швидше.',
-  booking,
-  footerHome: 'На початок',
-  footerCredit: 'Парк-готель Family’s Star',
-  guests: (n) => {
-    const mod10 = n % 10
-    const mod100 = n % 100
-    if (mod10 === 1 && mod100 !== 11) return 'гість'
-    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return 'гості'
-    return 'гостей'
-  },
+  factsSockets: 'Розетки у окна',
+  placeKicker: 'Зал',
+  placeTitle: 'Зайти и остаться',
+  placeBody:
+    'Небольшой зал со стойкой и витриной. Днём сюда заходят компанией, ближе к вечеру кто-то остаётся с ноутбуком. Выпечка стоит с утра, зерно меняется по сезону.',
+  friendsCaption: 'Здесь нормально сидеть вчетвером и не спешить.',
+  laptopCaption: 'У окна есть розетка. Чашка рядом не мешает.',
+  drinksKicker: 'Напитки',
+  drinksTitle: 'Что здесь заказывают',
+  cupsCaption: 'Иногда хватает двух чашек.',
+  menuKicker: 'Меню',
+  menuTitle: 'На стойке',
+  menuLead: 'Цены в гривнах. Список короткий: то, что реально стоит у витрины.',
+  visitKicker: 'Как найти',
+  visitTitle: 'Дверь со стороны улицы',
+  visitBody:
+    'Стеклянная дверь и растения у входа. Заходите без брони: если вас четверо, удобнее до семи.',
+  hoursTitle: 'Часы',
+  addressTitle: 'Адрес',
+  writeTitle: 'Написать',
+  mapTitle: 'Карта',
+  mapLink: 'Открыть карту',
+  mapNote: 'Адрес, телефон, почта и метка на карте вымышлены: это учебный макет.',
+  footerNote:
+    'Учебный проект. Название, адрес, телефон и почта вымышлены и не относятся к реальной кофейне.',
 }

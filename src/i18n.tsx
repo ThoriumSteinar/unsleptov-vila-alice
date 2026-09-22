@@ -1,13 +1,13 @@
 import { createContext, useContext, useEffect, type ReactNode } from 'react'
-import { copy, type Copy } from './data'
+import { copy } from './data'
 
-type I18n = { t: Copy }
+type I18n = { t: typeof copy }
 
 const Ctx = createContext<I18n | null>(null)
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
-    document.documentElement.lang = 'uk'
+    document.documentElement.lang = 'ru'
     document.title = copy.pageTitle
   }, [])
 
