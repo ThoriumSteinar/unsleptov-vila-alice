@@ -7,7 +7,7 @@ const Ctx = createContext<I18n | null>(null)
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
-    document.documentElement.lang = 'ru'
+    document.documentElement.lang = 'uk'
     document.title = copy.pageTitle
   }, [])
 

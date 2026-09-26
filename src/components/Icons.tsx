@@ -1,3 +1,48 @@
+export function IconPot({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 64 64" aria-hidden="true">
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        d="M14 28c0-8 6-14 18-14s18 6 18 14v16H14V28z"
+      />
+      <path fill="none" stroke="currentColor" strokeWidth="2" d="M10 44h44" />
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        d="M26 18c2-4 4-6 6-6s4 2 6 6M32 8v6"
+      />
+      <ellipse cx="32" cy="10" rx="3" ry="2" fill="none" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
+  )
+}
+
+export function IconFacebook() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M14 8h3V5h-3c-2.8 0-5 2.2-5 5v2H7v3h2v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1z"
+      />
+    </svg>
+  )
+}
+
+export function IconPhone() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M8.5 4.2c.3-1 1.2-1.6 2.2-1.4l2 .4c1 .2 1.7 1 1.7 2v2.2c0 .8-.5 1.5-1.2 1.9l-1.3.7c1.2 2.4 3.1 4.3 5.5 5.5l.7-1.3c.4-.7 1.1-1.2 1.9-1.2H21c1 0 1.8.7 2 1.7l.4 2c.2 1-.4 1.9-1.4 2.2-1.2.4-2.5.6-3.8.6C10.1 22 2 13.9 2 3.8 2 2.5 2.2 1.2 2.6 0 2.9-.1 3.8-.7 4.8-.5l2 .4z"
+      />
+    </svg>
+  )
+}
+
 export function IconInstagram() {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true">

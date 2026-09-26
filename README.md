@@ -1,8 +1,14 @@
-# unsleptov
+# unsleptov — територія відпочинку
 
-Учебный макет кофейни в Киеве. Название, адрес, телефон и почта вымышлены.
+Демо-лендинг території сімейного відпочинку (референс — база відпочинку). Назва, адреса, телефон і соцмережі вигадані — портфоліо unsleptov.
+
+**Демо:** https://thoriumsteinar.github.io/unsleptov-vila-alice/
 
 ```bash
 npm install
 npm run dev
+```
+
+```bash
+npm run deploy
 ```

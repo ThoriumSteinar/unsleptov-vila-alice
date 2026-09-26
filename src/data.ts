@@ -1,141 +1,144 @@
 const asset = (file: string) => `${import.meta.env.BASE_URL}images/${file}`
 
 export const site = {
-  name: 'unsleptov',
-  city: 'Киев',
+  name: 'Unsleptov',
+  shortName: 'UNSLEPTOV',
+  city: 'Гостиномир',
   phone: '044 555 2048',
   phoneTel: '+380445552048',
   email: 'hello@unsleptov.com',
-  address: ['ул. Тарифная, 18', 'Подол, Киев'],
-  lat: 50.4672,
-  lng: 30.5168,
+  address: ['вул. Берегова, 18', 'м. Гостиномир'],
+  territoryHours: '10:00–22:00',
+  restaurantHours: '11:00–21:00',
+  lat: 49.0139,
+  lng: 33.6952,
   social: {
     instagram: 'https://www.instagram.com/unsleptov',
+    facebook: 'https://www.facebook.com/unsleptov',
   },
 }
 
 export const images = {
-  hall: asset('cafe-hall.png'),
-  friends: asset('cafe-friends.png'),
-  laptop: asset('cafe-laptop.jpg'),
-  door: asset('cafe-door.jpg'),
-  tray: asset('cafe-tray.jpg'),
-  cups: asset('cafe-cups.png'),
+  hero: asset('hero-pool.jpg'),
+  about: asset('about-cottage.jpg'),
+  serviceHouse: asset('room-living.png'),
+  serviceGazebo: asset('rest-bench.jpg'),
+  serviceExtra: asset('park-pool-side.jpg'),
+  serviceRestaurant: asset('food-plate.jpg'),
+  advNature: asset('park-garden.jpg'),
+  advPlayground: asset('park-pool.jpg'),
+  advBeach: asset('beach-lounge.jpg'),
+  restaurant: asset('cafe-hall.png'),
 }
 
-export const schedule = [
-  { label: 'Пн–Чт', days: [1, 2, 3, 4], open: '08:00', close: '21:00' },
-  { label: 'Пт–Сб', days: [5, 6], open: '08:00', close: '22:00' },
-  { label: 'Вс', days: [0], open: '09:00', close: '21:00' },
-] as const
-
-export const signatures = [
+export const services = [
   {
-    name: 'Капучино',
-    note: 'Плотная пенка, к долгому разговору.',
-    price: '80',
+    id: 'houses',
+    title: 'ОРЕНДА БУДИНОЧКІВ',
+    text: 'Оренда будиночків для комфортного перебування на природі.',
+    cta: 'Замовити будиночок',
+    href: '#contacts',
+    image: images.serviceHouse,
   },
   {
-    name: 'Фильтр дня',
-    note: 'Светлый, пока на стойке это зерно.',
-    price: '75',
+    id: 'gazebo',
+    title: 'ОРЕНДА АЛЬТАНОК',
+    text: 'Оренда альтанок для приємного відпочинку під затишним дахом.',
+    cta: 'Замовити альтанку',
+    href: '#contacts',
+    image: images.serviceGazebo,
   },
   {
-    name: 'Какао с карамелью',
-    note: 'Холодный, со сливками.',
-    price: '95',
+    id: 'extra',
+    title: 'СУПУТНІ ПОСЛУГИ',
+    text: 'Перелік додаткових послуг для вашого зручного відпочинку.',
+    cta: 'Перелік послуг',
+    href: '#services',
+    image: images.serviceExtra,
   },
   {
-    name: 'Круассан',
-    note: 'С маслом, с утра у витрины.',
-    price: '65',
-  },
-] as const
-
-export const menu = [
-  {
-    id: 'coffee',
-    title: 'Кофе',
-    items: [
-      { name: 'Эспрессо', note: 'Короткий', price: '55' },
-      { name: 'Американо', note: 'Длинный', price: '65' },
-      { name: 'Капучино', note: 'Молоко и пенка', price: '80' },
-      { name: 'Флэт уайт', note: 'Плотнее капучино', price: '85' },
-      { name: 'Фильтр дня', note: 'Зерно этой недели', price: '75' },
-      { name: 'Раф', note: 'Сливки и ваниль', price: '90' },
-    ],
-  },
-  {
-    id: 'other',
-    title: 'Не кофе',
-    items: [
-      { name: 'Какао с карамелью', note: 'Холодный, со сливками', price: '95' },
-      { name: 'Какао', note: 'Горячий', price: '70' },
-      { name: 'Чай', note: 'Чёрный или травяной', price: '60' },
-      { name: 'Лимонад', note: 'Домашний', price: '70' },
-    ],
-  },
-  {
-    id: 'food',
-    title: 'К столу',
-    items: [
-      { name: 'Круассан', note: 'С маслом', price: '65' },
-      { name: 'Миндальный круассан', note: 'С витрины', price: '85' },
-      { name: 'Песочное печенье', note: 'К фильтру', price: '40' },
-    ],
+    id: 'restaurant',
+    title: 'РЕСТОРАН UNSLEPTOV',
+    text: 'Ресторан зі смачними стравами для задоволення гастрономічних бажань.',
+    cta: 'Переглянути меню',
+    href: '#menu',
+    image: images.serviceRestaurant,
   },
 ] as const
 
-export const visitNotes = [
-  'Столы на двоих и на компанию',
-  'С ноутбуком можно, розетка у окна',
-  'Wi‑Fi спрашивают у стойки',
-  'Выпечка с открытия',
-  'Бронь не нужна',
+export const advantages = [
+  {
+    id: 'nature',
+    title: 'ВІДПОЧИНОК НА ПРИРОДІ — ЗАПАС ЕНЕРГІЇ ТА ГАРМОНІЇ',
+    text: 'Насолоджуйтесь природним спокоєм на зеленій території. Альтанки та будиночки — для пікніків і відпочинку в колі близьких.',
+    image: images.advNature,
+    imageFirst: false,
+  },
+  {
+    id: 'playground',
+    title: 'ДИТЯЧИЙ МАЙДАНЧИК — РАДІСТЬ ДЛЯ ДІТЕЙ',
+    text: 'На території сімейного відпочинку Unsleptov ми приділили особливу увагу маленьким гостям: безпечний майданчик, де діти граються, а батьки відпочивають поруч.',
+    image: images.advPlayground,
+    imageFirst: true,
+  },
+  {
+    id: 'beach',
+    title: 'ПЛЯЖ ТА ЗОНА ВІДПОЧИНКУ БІЛЯ ВОДИ',
+    text: 'Шезлонги, тінь від дерев і простір біля води — щоб провести день без метушні. Зимою частина зон працює в обмеженому режимі.',
+    image: images.advBeach,
+    imageFirst: false,
+  },
 ] as const
 
 const pad = 0.012
 export const mapEmbed = `https://www.openstreetmap.org/export/embed.html?bbox=${site.lng - pad}%2C${site.lat - pad}%2C${site.lng + pad}%2C${site.lat + pad}&layer=mapnik&marker=${site.lat}%2C${site.lng}`
 
-export const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('ул. Тарифная 18, Киев')}`
+export const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${site.address.join(', ')} (демо)`)}`
 
 export const copy = {
-  pageTitle: 'unsleptov — кофейня в Киеве',
-  skip: 'К содержанию',
-  kicker: 'Кофейня в Киеве',
-  lead: 'Зайти с друзьями, взять кофе и посидеть.',
-  aside: 'Стол у окна остаётся для тех, кто открыл ноутбук.',
-  cta: 'Как добраться',
+  pageTitle: 'Unsleptov — територія сімейного відпочинку',
+  skip: 'До змісту',
   nav: {
-    place: 'Зал',
-    drinks: 'Напитки',
+    home: 'Головна',
+    rules: 'Правила',
+    order: 'Замовити',
+    contacts: 'Контакти',
     menu: 'Меню',
-    visit: 'Найти',
-    route: 'Маршрут',
+    orderHouse: 'Будиночок',
+    orderGazebo: 'Альтанку',
   },
-  factsSockets: 'Розетки у окна',
-  placeKicker: 'Зал',
-  placeTitle: 'Зайти и остаться',
-  placeBody:
-    'Небольшой зал со стойкой и витриной. Днём сюда заходят компанией, ближе к вечеру кто-то остаётся с ноутбуком. Выпечка стоит с утра, зерно меняется по сезону.',
-  friendsCaption: 'Здесь нормально сидеть вчетвером и не спешить.',
-  laptopCaption: 'У окна есть розетка. Чашка рядом не мешает.',
-  drinksKicker: 'Напитки',
-  drinksTitle: 'Что здесь заказывают',
-  cupsCaption: 'Иногда хватает двух чашек.',
-  menuKicker: 'Меню',
-  menuTitle: 'На стойке',
-  menuLead: 'Цены в гривнах. Список короткий: то, что реально стоит у витрины.',
-  visitKicker: 'Как найти',
-  visitTitle: 'Дверь со стороны улицы',
-  visitBody:
-    'Стеклянная дверь и растения у входа. Заходите без брони: если вас четверо, удобнее до семи.',
-  hoursTitle: 'Часы',
-  addressTitle: 'Адрес',
-  writeTitle: 'Написать',
-  mapTitle: 'Карта',
-  mapLink: 'Открыть карту',
-  mapNote: 'Адрес, телефон, почта и метка на карте вымышлены: это учебный макет.',
+  heroTitle: 'Територія сімейного відпочинку «Unsleptov»',
+  heroLead:
+    'Чудове місце відпочинку для всієї родини на березі річки Струмок у місті Гостиномир',
+  heroCtaServices: 'Перелік послуг',
+  heroCtaCall: 'Зателефонувати та зробити замовлення',
+  aboutTitle: 'Про нас',
+  aboutBody:
+    'Територія сімейного відпочинку Unsleptov розташована в м. Гостиномир на березі річки Струмок. Тут можна орендувати будиночки або альтанки для святкувань, відпочити на пляжі з шезлонгами, дати дітям погратися на майданчику та пообідати в ресторані на території. Номерів готелю немає — лише денний відпочинок; взимку частина будиночків опалюється.',
+  servicesTitle: 'Наші послуги',
+  servicesLead: 'Перелік послуг на території сімейного відпочинку «Unsleptov»',
+  advantagesTitle: 'Переваги відпочинку у нас',
+  restaurantTitle: 'РЕСТОРАН НА ТЕРИТОРІЇ БАЗИ',
+  restaurantBody:
+    'На території сімейного відпочинку Unsleptov працює ресторан — для банкетів або невимушеної трапези на природі. Меню — демонстраційне, без прив’язки до реального закладу.',
+  menuTitle: 'Меню (демо)',
+  menuLead: 'Уривок меню для портфоліо. Ціни умовні.',
+  menuItems: [
+    { name: 'Борщ з пампушками', price: '120' },
+    { name: 'М’ясо на мангалі', price: '280' },
+    { name: 'Салат сезонний', price: '95' },
+    { name: 'Компот домашній', price: '45' },
+  ],
+  contactsTitle: 'Контакти',
+  contactsHoursTerritory: 'Нагадуємо, що час роботи території сімейного відпочинку:',
+  contactsHoursRestaurant: 'Ресторан:',
+  contactsAddress: 'Адреса:',
+  contactsWait: 'Чекаємо Вас у гості!',
+  rulesTitle: 'Правила відвідування',
+  rulesBody:
+    'Дбайте про чистоту на території, не палить у недозволених місцях, дотримуйтесь тиші після 22:00. Домашніх тварин — ли за попередньою домовленістю. Усі контакти та адреса нижче — вигадані для навчального макету.',
   footerNote:
-    'Учебный проект. Название, адрес, телефон и почта вымышлены и не относятся к реальной кофейне.',
+    'Портфоліо unsleptov. Назва, адреса, телефон, соцмережі та карта — вигадані; сайт не представляє реальний заклад.',
+  photoCredit: 'Фото: Unsplash, Pexels (ліцензії для демо-макету).',
+  footerRights: 'All Rights Reserved',
 }
