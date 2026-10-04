@@ -1,63 +1,60 @@
 import { useEffect, useState } from 'react'
-import { useI18n } from '../i18n'
-import { IconPot } from './Icons'
+import { site } from '../data'
+
+const links = [
+  { href: '#about', label: 'Зала' },
+  { href: '#kitchen', label: 'Кухня' },
+  { href: '#menu', label: 'Меню' },
+  { href: '#river', label: 'Вода' },
+  { href: '#contacts', label: 'Контакти' },
+]
 
 export function Header() {
-  const { t } = useI18n()
   const [open, setOpen] = useState(false)
+  const [solid, setSolid] = useState(false)
 
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
       if (event.key === 'Escape') setOpen(false)
     }
+    function onScroll() {
+      setSolid(window.scrollY > 24)
+    }
+    onScroll()
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('scroll', onScroll)
+    }
   }, [])
 
   const close = () => setOpen(false)
 
   return (
-    <header className={open ? 'site-head is-open' : 'site-head'}>
+    <header className={open ? 'site-head is-open' : solid ? 'site-head is-solid' : 'site-head'}>
       <div className="site-head-inner">
-        <a className="logo-block" href="#top" onClick={close}>
-          <IconPot />
-          <span className="logo-script">Територія сімейного відпочинку Unsleptov у місті Гостиномир</span>
+        <a className="logo" href="#top" onClick={close}>
+          Козачок
         </a>
 
-        <nav className="site-nav" aria-label="Головна навігація">
-          <a href="#top" onClick={close}>
-            {t.nav.home}
-          </a>
-          <a href="#rules" onClick={close}>
-            {t.nav.rules}
-          </a>
-          <span className="nav-dropdown">
-            <button type="button" className="nav-drop-btn" aria-haspopup="true">
-              {t.nav.order}
-              <span aria-hidden="true"> ▾</span>
-            </button>
-            <span className="nav-drop-menu">
-              <a href="#contacts" onClick={close}>
-                {t.nav.orderHouse}
-              </a>
-              <a href="#contacts" onClick={close}>
-                {t.nav.orderGazebo}
-              </a>
-            </span>
-          </span>
-          <a href="#contacts" onClick={close}>
-            {t.nav.contacts}
-          </a>
-          <a href="#menu" onClick={close}>
-            {t.nav.menu}
-          </a>
+        <nav className="site-nav" aria-label="Розділи сторінки">
+          {links.map((link) => (
+            <a key={link.href} href={link.href} onClick={close}>
+              {link.label}
+            </a>
+          ))}
         </nav>
+
+        <a className="head-phone" href={`tel:${site.phoneTel}`}>
+          {site.phone}
+        </a>
 
         <button
           type="button"
           className="head-burger"
           aria-expanded={open}
-          aria-label="Меню"
+          aria-label={open ? 'Закрити меню' : 'Відкрити меню'}
           onClick={() => setOpen((value) => !value)}
         >
           <span />

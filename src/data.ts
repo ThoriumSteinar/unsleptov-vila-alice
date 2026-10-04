@@ -1,144 +1,85 @@
-const asset = (file: string) => `${import.meta.env.BASE_URL}images/${file}`
+const asset = (file: string) => `${import.meta.env.BASE_URL}images/kozachok/${file}`
 
 export const site = {
-  name: 'Unsleptov',
-  shortName: 'UNSLEPTOV',
-  city: 'Гостиномир',
-  phone: '044 555 2048',
-  phoneTel: '+380445552048',
-  email: 'hello@unsleptov.com',
-  address: ['вул. Берегова, 18', 'м. Гостиномир'],
-  territoryHours: '10:00–22:00',
-  restaurantHours: '11:00–21:00',
-  lat: 49.0139,
-  lng: 33.6952,
-  social: {
-    instagram: 'https://www.instagram.com/unsleptov',
-    facebook: 'https://www.facebook.com/unsleptov',
-  },
+  name: 'Козачок',
+  city: 'Миколаїв',
+  phone: '093 422 58 02',
+  phoneTel: '+380934225802',
+  address: 'вул. Лазурна, 4, Миколаїв, 54000',
+  hours: '10:00–23:00',
+  hoursNote: 'щодня',
+  lat: 46.9559116,
+  lng: 31.9375719,
+  rating: '4,5',
+  facebook: 'https://www.facebook.com/profile.php?id=100008114597502',
+  maps: 'https://www.google.com/maps/search/?api=1&query=46.9559116%2C31.9375719',
 }
 
 export const images = {
-  hero: asset('hero-pool.jpg'),
-  about: asset('about-cottage.jpg'),
-  serviceHouse: asset('room-living.png'),
-  serviceGazebo: asset('rest-bench.jpg'),
-  serviceExtra: asset('park-pool-side.jpg'),
-  serviceRestaurant: asset('food-plate.jpg'),
-  advNature: asset('park-garden.jpg'),
-  advPlayground: asset('park-pool.jpg'),
-  advBeach: asset('beach-lounge.jpg'),
-  restaurant: asset('cafe-hall.png'),
+  hall: asset('hall.jpg'),
+  exterior: asset('exterior.jpg'),
+  feast: asset('feast.jpg'),
+  fish: asset('fish.jpg'),
+  chan: asset('chan.jpg'),
+  sunset: asset('sunset.jpg'),
+  hearth: asset('hearth.jpg'),
+  shashlik: asset('shashlik.jpg'),
+  steak: asset('steak.jpg'),
+  salad: asset('salad.jpg'),
+  board: asset('board.jpg'),
+  loaf: asset('loaf.jpg'),
 }
 
-export const services = [
+export const menu = [
   {
-    id: 'houses',
-    title: 'ОРЕНДА БУДИНОЧКІВ',
-    text: 'Оренда будиночків для комфортного перебування на природі.',
-    cta: 'Замовити будиночок',
-    href: '#contacts',
-    image: images.serviceHouse,
+    id: 'grill',
+    title: 'Гриль',
+    items: [
+      { name: 'Шашличок зі свинини', note: 'шия, аджика, зелень і цибуля, 250 г', price: '220' },
+      { name: 'Шашличок курячий', note: 'філе та часниковий соус, 250 г', price: '180' },
+      { name: 'Стейк зі свинини', note: 'за 100 г', price: '260' },
+      { name: 'Свинячі реберця', note: '300 г', price: '200' },
+      { name: 'Люля-кебаб з яловичини', note: 'за 100 г', price: '200' },
+      { name: 'Ковбаски «Мюнхенські»', note: '1 шт.', price: '200' },
+      { name: 'Пікантні крильця', note: 'з соусом теріякі, 3 шт.', price: '120' },
+      { name: 'Скумбрія гриль', note: 'з соусом тартар', price: '230' },
+      { name: 'Овочі гриль', note: 'баклажан, помідор, перець, кабачок', price: '160' },
+      { name: 'Печериці гриль', note: 'з часниковим соусом, 150 г', price: '80' },
+    ],
   },
   {
-    id: 'gazebo',
-    title: 'ОРЕНДА АЛЬТАНОК',
-    text: 'Оренда альтанок для приємного відпочинку під затишним дахом.',
-    cta: 'Замовити альтанку',
-    href: '#contacts',
-    image: images.serviceGazebo,
+    id: 'starters',
+    title: 'Закуски',
+    items: [
+      { name: 'Погребок із домашніх солінь', note: 'капуста, бочковий огірок, помідор, 400 г', price: '170' },
+      { name: 'Асорті із сала', note: 'шпик, мариноване сало, підчеревок, 350 г', price: '200' },
+      { name: 'Закуска під чарочку', note: 'грінки, сало, бочковий огірок, 200 г', price: '100' },
+      { name: 'Філе оселедця', note: 'з цибулею та запашною олією', price: '160' },
+      { name: 'Дошка з елітних сирів', note: 'брі, камамбер, гауда, фета, 280 г', price: '300' },
+      { name: 'М’ясна дошка', note: 'хамон, фует, бастурма, салямі, 250 г', price: '300' },
+      { name: 'Маслини або оливки', note: '100 г', price: '90' },
+      { name: 'Лаваш гарячий', note: 'з часниковим соусом', price: '60' },
+      { name: 'Хлібна корзина', note: '10 шматків', price: '30' },
+    ],
   },
   {
-    id: 'extra',
-    title: 'СУПУТНІ ПОСЛУГИ',
-    text: 'Перелік додаткових послуг для вашого зручного відпочинку.',
-    cta: 'Перелік послуг',
-    href: '#services',
-    image: images.serviceExtra,
-  },
-  {
-    id: 'restaurant',
-    title: 'РЕСТОРАН UNSLEPTOV',
-    text: 'Ресторан зі смачними стравами для задоволення гастрономічних бажань.',
-    cta: 'Переглянути меню',
-    href: '#menu',
-    image: images.serviceRestaurant,
-  },
-] as const
-
-export const advantages = [
-  {
-    id: 'nature',
-    title: 'ВІДПОЧИНОК НА ПРИРОДІ — ЗАПАС ЕНЕРГІЇ ТА ГАРМОНІЇ',
-    text: 'Насолоджуйтесь природним спокоєм на зеленій території. Альтанки та будиночки — для пікніків і відпочинку в колі близьких.',
-    image: images.advNature,
-    imageFirst: false,
-  },
-  {
-    id: 'playground',
-    title: 'ДИТЯЧИЙ МАЙДАНЧИК — РАДІСТЬ ДЛЯ ДІТЕЙ',
-    text: 'На території сімейного відпочинку Unsleptov ми приділили особливу увагу маленьким гостям: безпечний майданчик, де діти граються, а батьки відпочивають поруч.',
-    image: images.advPlayground,
-    imageFirst: true,
-  },
-  {
-    id: 'beach',
-    title: 'ПЛЯЖ ТА ЗОНА ВІДПОЧИНКУ БІЛЯ ВОДИ',
-    text: 'Шезлонги, тінь від дерев і простір біля води — щоб провести день без метушні. Зимою частина зон працює в обмеженому режимі.',
-    image: images.advBeach,
-    imageFirst: false,
+    id: 'salads',
+    title: 'Салати',
+    items: [
+      { name: 'Селянський із запашною олією', note: 'помідор, огірок, зелень', price: '90' },
+      { name: 'Грецький', note: 'помідор, огірок, перець, фета, 300 г', price: '170' },
+      { name: 'Цезар із курочкою', note: '300 г', price: '250' },
+      { name: 'Цезар із слабосолоною сьомгою', note: '300 г', price: '300' },
+      { name: 'Примхи з моцарелою', note: 'помідор, моцарела, песто, 250 г', price: '180' },
+      { name: 'Овочева поляна', note: '400 г', price: '160' },
+    ],
   },
 ] as const
 
 const pad = 0.012
 export const mapEmbed = `https://www.openstreetmap.org/export/embed.html?bbox=${site.lng - pad}%2C${site.lat - pad}%2C${site.lng + pad}%2C${site.lat + pad}&layer=mapnik&marker=${site.lat}%2C${site.lng}`
 
-export const mapLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${site.address.join(', ')} (демо)`)}`
-
 export const copy = {
-  pageTitle: 'Unsleptov — територія сімейного відпочинку',
+  pageTitle: 'Козачок — ресторан на березі Бугу, Миколаїв',
   skip: 'До змісту',
-  nav: {
-    home: 'Головна',
-    rules: 'Правила',
-    order: 'Замовити',
-    contacts: 'Контакти',
-    menu: 'Меню',
-    orderHouse: 'Будиночок',
-    orderGazebo: 'Альтанку',
-  },
-  heroTitle: 'Територія сімейного відпочинку «Unsleptov»',
-  heroLead:
-    'Чудове місце відпочинку для всієї родини на березі річки Струмок у місті Гостиномир',
-  heroCtaServices: 'Перелік послуг',
-  heroCtaCall: 'Зателефонувати та зробити замовлення',
-  aboutTitle: 'Про нас',
-  aboutBody:
-    'Територія сімейного відпочинку Unsleptov розташована в м. Гостиномир на березі річки Струмок. Тут можна орендувати будиночки або альтанки для святкувань, відпочити на пляжі з шезлонгами, дати дітям погратися на майданчику та пообідати в ресторані на території. Номерів готелю немає — лише денний відпочинок; взимку частина будиночків опалюється.',
-  servicesTitle: 'Наші послуги',
-  servicesLead: 'Перелік послуг на території сімейного відпочинку «Unsleptov»',
-  advantagesTitle: 'Переваги відпочинку у нас',
-  restaurantTitle: 'РЕСТОРАН НА ТЕРИТОРІЇ БАЗИ',
-  restaurantBody:
-    'На території сімейного відпочинку Unsleptov працює ресторан — для банкетів або невимушеної трапези на природі. Меню — демонстраційне, без прив’язки до реального закладу.',
-  menuTitle: 'Меню (демо)',
-  menuLead: 'Уривок меню для портфоліо. Ціни умовні.',
-  menuItems: [
-    { name: 'Борщ з пампушками', price: '120' },
-    { name: 'М’ясо на мангалі', price: '280' },
-    { name: 'Салат сезонний', price: '95' },
-    { name: 'Компот домашній', price: '45' },
-  ],
-  contactsTitle: 'Контакти',
-  contactsHoursTerritory: 'Нагадуємо, що час роботи території сімейного відпочинку:',
-  contactsHoursRestaurant: 'Ресторан:',
-  contactsAddress: 'Адреса:',
-  contactsWait: 'Чекаємо Вас у гості!',
-  rulesTitle: 'Правила відвідування',
-  rulesBody:
-    'Дбайте про чистоту на території, не палить у недозволених місцях, дотримуйтесь тиші після 22:00. Домашніх тварин — ли за попередньою домовленістю. Усі контакти та адреса нижче — вигадані для навчального макету.',
-  footerNote:
-    'Портфоліо unsleptov. Назва, адреса, телефон, соцмережі та карта — вигадані; сайт не представляє реальний заклад.',
-  photoCredit: 'Фото: Unsplash, Pexels (ліцензії для демо-макету).',
-  footerRights: 'All Rights Reserved',
 }
